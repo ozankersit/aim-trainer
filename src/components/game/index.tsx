@@ -20,7 +20,6 @@ export default function Game() {
   const startGameHandler = () => {
     generateRandomPoint();
     setStartGame(true);
-    setTimeLeft(60);
   };
 
   return (
