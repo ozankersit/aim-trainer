@@ -3,11 +3,13 @@ import { useState } from "react";
 import GameArea from "../game-area";
 import Target from "../target";
 import Timer from "../timer";
+import GameButtons from "../game-buttons";
 
 export default function Game() {
   const [point, setPoint] = useState<{ x: number; y: number } | null>(null);
   const [startGame, setStartGame] = useState<boolean>(false);
-  const [timeLeft, setTimeLeft] = useState<number>(60);
+  const [timeLeft, setTimeLeft] = useState<number>(30);
+  const [counter, setCounter] = useState<number>(0);
 
   const generateRandomPoint = () => {
     const newPoint = {
@@ -15,28 +17,29 @@ export default function Game() {
       y: Math.floor(Math.random() * 280),
     };
     setPoint(newPoint);
+    setCounter(counter + 1);
   };
 
-  const startGameHandler = () => {
-    generateRandomPoint();
-    setStartGame(true);
+  const toggleGame = () => {
+    if (startGame) {
+      setStartGame(false);
+    } else {
+      setStartGame(true);
+    }
+    setCounter(0);
+    setTimeLeft(30);
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <button
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-        onClick={startGameHandler}
-        disabled={startGame}
-      >
-        Start
-      </button>
+    <div className="flex flex-col items-center gap-4 p-4">
+      <GameButtons startGame={startGame} toggleGame={toggleGame} />
       <Timer
         timeLeft={timeLeft}
         setTimeLeft={setTimeLeft}
         startGame={startGame}
         setStartGame={setStartGame}
       />
+      <span>Counter:{counter}</span>
       <GameArea>
         {startGame ? (
           <Target
