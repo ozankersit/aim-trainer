@@ -31,7 +31,7 @@ export default function Game() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
+    <section className="flex flex-col items-center gap-4 p-4">
       <GameButtons startGame={startGame} toggleGame={toggleGame} />
       <Timer
         timeLeft={timeLeft}
@@ -49,6 +49,6 @@ export default function Game() {
           />
         ) : null}
       </GameArea>
-    </div>
+    </section>
   );
 }
