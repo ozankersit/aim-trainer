@@ -24,8 +24,7 @@ export default function Timer({
       setStartGame(false);
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startGame, timeLeft]);
+  }, [setStartGame, setTimeLeft, startGame, timeLeft]);
   return (
     <div>
       <div>Time Left: {timeLeft} seconds</div>
